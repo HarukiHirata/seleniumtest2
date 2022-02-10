@@ -19,25 +19,29 @@ class ExampleTest extends DuskTestCase
     public function testUserRegister()
     {
         $this->browse(function (Browser $browser) {
+            $now = date('Y-m-d-H:i:s');
             $browser->visit('/')
                     ->clickLink('新規登録')
-                    ->type('name', 'テスト用DB5')
-                    ->type('email', 'testdb5@example.com')
+                    ->type('name', 'スクショテスト3')
+                    ->type('email', 'screenshottest3@example.com')
                     ->type('password', 'password')
                     ->click('#register-btn')
-                    ->assertSee('テスト用DB5');
+                    ->screenshot($now . '_register');
         });
     }
 
     public function testUserLogin()
     {
         $this->browse(function (Browser $browser) {
+            $now = date('Y-m-d-H:i:s');
             $browser->visit('/')
                     ->clickLink('ログイン')
-                    ->type('email', 'testdb5@example.com')
+                    ->type('email', 'screenshottest2@example.com')
                     ->type('password', 'password')
                     ->click('#login-btn')
-                    ->assertSee('テスト用DB5');
+                    ->screenshot($now . '_login')
+                    ->clickLink('ログアウト')
+                    ->screenshot($now . '_logout');
         });
     }
 }
